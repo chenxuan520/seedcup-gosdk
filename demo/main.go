@@ -19,13 +19,9 @@ func init() {
 
 func Getch() (rune, error) {
 	eventQueue := make(chan termbox.Event, 200)
-	go func() {
-		for {
-			eventQueue <- termbox.PollEvent()
-		}
-	}()
 
 	for {
+		eventQueue <- termbox.PollEvent()
 		ev := <-eventQueue
 		switch ev.Type {
 		case termbox.EventKey:
