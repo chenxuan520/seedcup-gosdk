@@ -15,10 +15,16 @@ type RespPacket struct {
 }
 
 type RespData struct {
-	PlayerID  int32   `json:"player_id,omitempty"`
-	Round     int32   `json:"round,omitempty"`
-	Map       []*Area `json:"map,omitempty"`
-	WinnerIds []int32 `json:"winner_ids,omitempty"`
+	PlayerID  int32    `json:"player_id,omitempty"`
+	Round     int32    `json:"round,omitempty"`
+	Map       []*Area  `json:"map,omitempty"`
+	WinnerIds []int32  `json:"winner_ids,omitempty"`
+	Scores    []Scores `json:"scores,omitempty"`
+}
+
+type Scores struct {
+	PlayerID int32 `json:"player_id,omitempty"`
+	Score    int32 `json:"score,omitempty"`
 }
 
 type GameMsg struct {

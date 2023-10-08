@@ -11,7 +11,7 @@ type Game struct {
 	conn             *server.Conn
 	config           *config.Config
 	mapCallBack      func(gameMsg *elements.GameMsg, game *Game) error
-	gameOverCallBack func(playerID int32, winners []int32) error
+	gameOverCallBack func(playerID int32, winners []int32, scores []elements.Scores) error
 }
 
 func (game *Game) Init(configPath string) error {
@@ -28,7 +28,7 @@ func (game *Game) Init(configPath string) error {
 	return nil
 }
 
-func (game *Game) RegisterCallBack(mapCallBack func(*elements.GameMsg, *Game) error, gameOverCallBack func(int32, []int32) error) {
+func (game *Game) RegisterCallBack(mapCallBack func(*elements.GameMsg, *Game) error, gameOverCallBack func(int32, []int32, []elements.Scores) error) {
 	game.mapCallBack = mapCallBack
 	game.gameOverCallBack = gameOverCallBack
 }
@@ -62,7 +62,7 @@ func (game *Game) Run() error {
 				return err
 			}
 			if game.gameOverCallBack != nil {
-				err = game.gameOverCallBack(game.playerID, packet.Data.WinnerIds)
+				err = game.gameOverCallBack(game.playerID, packet.Data.WinnerIds, packet.Data.Scores)
 			}
 			return err
 		}

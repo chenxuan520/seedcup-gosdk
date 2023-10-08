@@ -48,6 +48,9 @@ func main() {
 		log.Fatal(err)
 		return
 	}
+	defer termbox.Close()
+
+	fmt.Println("init seedgame success")
 
 	isGameOver := false
 	go func() {
@@ -71,6 +74,8 @@ func main() {
 	seedgame.RegisterCallBack(func(msg *elements.GameMsg, game *seedcup.Game) error {
 		termbox.Clear(termbox.ColorDefault, termbox.ColorDefault)
 		termbox.Flush()
+		fmt.Println()
+		fmt.Println()
 		size := len(msg.GameMap)
 		for i := 0; i < size; i++ {
 			for j := 0; j < size; j++ {
@@ -112,7 +117,7 @@ func main() {
 			fmt.Println("")
 		}
 		return nil
-	}, func(playerID int32, winners []int32) error {
+	}, func(playerID int32, winners []int32, _ []elements.Scores) error {
 		isGameOver = true
 		for _, winner := range winners {
 			if playerID == winner {
