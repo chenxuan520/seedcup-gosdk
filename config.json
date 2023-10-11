@@ -1,5 +1,6 @@
 {
-  "map_size": 15,
-  "ip": "192.168.0.109",
-  "port": 9999
+	"player_name": "gosdk",
+	"map_size": 15,
+	"ip": "192.168.0.109",
+	"port": 9999
 }

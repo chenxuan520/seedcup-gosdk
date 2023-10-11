@@ -35,7 +35,7 @@ func (game *Game) RegisterCallBack(mapCallBack func(*elements.GameMsg, *Game) er
 
 func (game *Game) Run() error {
 	defer game.conn.Close()
-	err := game.conn.UpstreamInit()
+	err := game.conn.UpstreamInit(game.config.PlayerName)
 	if err != nil {
 		return err
 	}

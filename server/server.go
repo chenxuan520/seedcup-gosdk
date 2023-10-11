@@ -72,9 +72,11 @@ func (conn *Conn) UpstreamAction(playerID int32, action elements.ActionType) (er
 	return conn.sendPacket(buf)
 }
 
-func (conn *Conn) UpstreamInit() (err error) {
+func (conn *Conn) UpstreamInit(playerName string) (err error) {
 	reqInit := elements.ReqPacket{
-		Type: elements.InitReq, Data: elements.ReqInit{},
+		Type: elements.InitReq, Data: elements.ReqInit{
+			PlayerName: playerName,
+		},
 	}
 	buf, err := json.Marshal(reqInit)
 	if err != nil {

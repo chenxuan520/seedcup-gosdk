@@ -53,11 +53,13 @@ type ReqAction struct {
 }
 
 type ReqPacket struct {
-	Type PacketType  `json:"type,omitempty"`
-	Data interface{} `json:"data,omitempty"`
+	Type PacketType  `json:"type"`
+	Data interface{} `json:"data"`
 }
 
-type ReqInit struct{}
+type ReqInit struct {
+	PlayerName string `json:"player_name"`
+}
 
 func ParseRespData(packet *RespData) (*GameMsg, error) {
 	msg := GameMsg{

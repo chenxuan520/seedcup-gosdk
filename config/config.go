@@ -6,9 +6,10 @@ import (
 )
 
 type Config struct {
-	MapSize int32  `json:"map_size"`
-	Ip      string `json:"ip"`
-	Port    uint32 `json:"port"`
+	PlayerName string `json:"player_name"`
+	MapSize    int32  `json:"map_size"`
+	Ip         string `json:"ip"`
+	Port       uint32 `json:"port"`
 }
 
 func InitConfig(configPath string) (*Config, error) {
