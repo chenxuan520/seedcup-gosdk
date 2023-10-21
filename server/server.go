@@ -19,7 +19,7 @@ type Conn struct {
 
 func CreateConn(config *config.Config) (conn *Conn, err error) {
 	conn = &Conn{}
-	conn.conn, err = net.Dial("tcp", fmt.Sprintf("%s:%d", config.Ip, config.Port))
+	conn.conn, err = net.Dial("tcp", fmt.Sprintf("%s:%d", config.Host, config.Port))
 	return conn, err
 }
 

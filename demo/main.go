@@ -43,12 +43,12 @@ func Getch() (rune, error) {
 
 func main() {
 	var seedgame seedcup.Game
+	defer termbox.Close()
 	err := seedgame.Init("../config.json")
 	if err != nil {
-		log.Fatal(err)
+		log.Println("err:", err)
 		return
 	}
-	defer termbox.Close()
 
 	fmt.Println("init seedgame success")
 
