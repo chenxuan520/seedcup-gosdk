@@ -6,7 +6,6 @@ import (
 )
 
 type Config struct {
-	PlayerName             string `json:"player_name,omitempty"`
 	GameMaxRound           int32  `json:"game_max_round,omitempty"`
 	GamePrintMap           bool   `json:"game_print_map,omitempty"`
 	GamePrintMapASCII      bool   `json:"game_print_map_ascii,omitempty"`

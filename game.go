@@ -8,13 +8,14 @@ import (
 
 type Game struct {
 	playerID         int32
+	playerName       string
 	conn             *server.Conn
 	config           *config.Config
 	mapCallBack      func(gameMsg *elements.GameMsg, game *Game) error
 	gameOverCallBack func(playerID int32, winners []int32, scores []elements.Scores) error
 }
 
-func (game *Game) Init(configPath string) error {
+func (game *Game) Init(configPath, playerName string) error {
 	var err error
 	game.config, err = config.InitConfig(configPath)
 	if err != nil {
@@ -24,6 +25,7 @@ func (game *Game) Init(configPath string) error {
 	if err != nil {
 		return err
 	}
+	game.playerName = playerName
 	elements.InitMap(game.config.MapSize)
 	return nil
 }
@@ -35,7 +37,7 @@ func (game *Game) RegisterCallBack(mapCallBack func(*elements.GameMsg, *Game) er
 
 func (game *Game) Run() error {
 	defer game.conn.Close()
-	err := game.conn.UpstreamInit(game.config.PlayerName)
+	err := game.conn.UpstreamInit(game.playerName)
 	if err != nil {
 		return err
 	}

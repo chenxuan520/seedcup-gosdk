@@ -44,7 +44,7 @@ func Getch() (rune, error) {
 func main() {
 	var seedgame seedcup.Game
 	defer termbox.Close()
-	err := seedgame.Init("../config.json")
+	err := seedgame.Init("../config.json", "gosdk")
 	if err != nil {
 		log.Println("err:", err)
 		return
