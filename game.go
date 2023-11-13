@@ -74,3 +74,7 @@ func (game *Game) Run() error {
 func (game *Game) TakeAction(action elements.ActionType) error {
 	return game.conn.UpstreamAction(game.playerID, action)
 }
+
+func (game *Game) TakeMutiAction(actions []elements.ActionType) error {
+	return game.conn.UpstreamMutiAction(game.playerID, actions)
+}

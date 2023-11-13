@@ -72,6 +72,25 @@ func (conn *Conn) UpstreamAction(playerID int32, action elements.ActionType) (er
 	return conn.sendPacket(buf)
 }
 
+func (conn *Conn) UpstreamMutiAction(playerID int32, actions []elements.ActionType) (err error) {
+	arr := []elements.ReqAction{}
+	for _, action := range actions {
+		arr = append(arr, elements.ReqAction{
+			PlayerID:   playerID,
+			ActionType: action,
+		})
+	}
+	packet := elements.ReqPacket{
+		Type: elements.ActionReq,
+		Data: arr,
+	}
+	buf, err := json.Marshal(packet)
+	if err != nil {
+		return nil
+	}
+	return conn.sendPacket(buf)
+}
+
 func (conn *Conn) UpstreamInit(playerName string) (err error) {
 	reqInit := elements.ReqPacket{
 		Type: elements.InitReq, Data: elements.ReqInit{

@@ -56,18 +56,20 @@ func main() {
 	go func() {
 		for !isGameOver {
 			key, _ := Getch()
+			actions := []elements.ActionType{}
 			switch key {
 			case 'a':
-				seedgame.TakeAction(elements.MoveLeft)
+				actions = append(actions, elements.MoveLeft)
 			case 's':
-				seedgame.TakeAction(elements.MoveDown)
+				actions = append(actions, elements.MoveDown)
 			case 'd':
-				seedgame.TakeAction(elements.MoveRight)
+				actions = append(actions, elements.MoveRight)
 			case 'w':
-				seedgame.TakeAction(elements.MoveUp)
+				actions = append(actions, elements.MoveUp)
 			case ' ':
-				seedgame.TakeAction(elements.Pleaced)
+				actions = append(actions, elements.Silent)
 			}
+			seedgame.TakeMutiAction(actions)
 		}
 	}()
 
