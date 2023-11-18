@@ -67,7 +67,7 @@ func main() {
 			case 'w':
 				actions = append(actions, elements.MoveUp)
 			case ' ':
-				actions = append(actions, elements.Silent)
+				actions = append(actions, elements.Pleaced)
 			}
 			seedgame.TakeMutiAction(actions)
 		}

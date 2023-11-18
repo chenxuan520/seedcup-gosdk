@@ -13,6 +13,7 @@ type Player struct {
 	InvincibleTime int32  `json:"invincible_time,omitempty"`
 	Speed          int32  `json:"speed,omitempty"`
 	Score          int32  `json:"score,omitempty"`
+	HasGloves      bool   `json:"has_gloves,omitempty"`
 	BombRange      int32  `json:"bomb_range,omitempty"`
 	BombMaxNum     int32  `json:"bomb_max_num,omitempty"`
 	BombNowNum     int32  `json:"bomb_now_num,omitempty"`
